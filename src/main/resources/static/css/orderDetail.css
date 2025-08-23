@@ -1,0 +1,44 @@
+.loading {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.loading::after {
+    content: " ";
+    animation: dots 1.5s infinite steps(5);
+}
+
+@keyframes dots {
+    0% {
+        content: " ";
+    }
+
+    20% {
+        content: "．";
+    }
+
+    40% {
+        content: "．．";
+    }
+
+    60% {
+        content: "．．．";
+    }
+
+    80% {
+        content: "．．．．";
+    }
+
+    100% {
+        content: " ";
+    }
+}
+
+td {
+    padding-left: 20px;
+}
+
+button.back {
+    margin-top: 20px;
+}

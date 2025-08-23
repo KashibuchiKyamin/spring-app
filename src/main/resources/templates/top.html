@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script>
+        var tableData = "/src/main/resources/ajaxResponse/top.json";
+    </script>
+    <script type="module" src="/src/main/resources/static/js/top.js"></script>
+
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <!-- ライブラリのCSSを上書きするのでこの順序にする。 -->
+    <link rel="stylesheet" href="/src/main/resources/static/css/common.css">
+    <title>トップページ</title>
+</head>
+
+<body>
+    <h1>トップページ</h1>
+
+    <h2>案件一覧</h2>
+    <div id="gridjs-table"></div>
+    <form id="detail-page-move-form" action="orderDetail.html">
+    </form>
+
+</body>
+
+<footer>
+    
+</footer>
+
+</html>

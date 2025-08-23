@@ -1,0 +1,165 @@
+body {
+    color: #333;
+    width: 1366px;
+    margin: auto;
+}
+
+button.send,
+button.notSend,
+button.cancel,
+button.back {
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 4px 4px #999;
+    transition: all 0.3s ease;
+}
+
+/* 次画面へ、または送信 */
+button.send {
+    background-color: #00FF33;
+}
+
+button.send:hover {
+    background-color: #00CC29;
+}
+
+button.send:active {
+    background-color: #00991F;
+    box-shadow: 2px 2px #666;
+    transform: translateY(2px);
+}
+
+/* 送信を伴わない入力 */
+button.notSend {
+    background-color: #66CCFF;
+}
+
+button.notSend:hover {
+    background-color: #33BBFF;
+}
+
+button.notSend:active {
+    background-color: #0099CC;
+    box-shadow: 2px 2px #666;
+    transform: translateY(2px);
+}
+
+/* キャンセル */
+button.cancel {
+    background-color: #FFFFFF;
+    border: 1px solid #CCC;
+}
+
+button.cancel:hover {
+    background-color: #F2F2F2;
+}
+
+button.cancel:active {
+    background-color: #E6E6E6;
+    box-shadow: 2px 2px #666;
+    transform: translateY(2px);
+}
+
+/* 戻る用のボタン */
+button.back {
+    background-color: #FFFF99;
+}
+
+button.back:hover {
+    background-color: #FFEE66;
+}
+
+button.back:active {
+    background-color: #FFD700;
+    box-shadow: 2px 2px #666;
+    transform: translateY(2px);
+}
+
+/* disabled ボタン */
+button.send:disabled,
+button.notSend:disabled,
+button.cancel:disabled,
+button.back:disabled {
+    background-color: #999999;
+    cursor: not-allowed;
+    box-shadow: 4px 4px #666;
+    /* 他のボタンと統一 */
+    color: #666;
+}
+
+/* disabled ボタンのホバー・クリック時の変更を防止 */
+button.send:disabled:hover,
+button.notSend:disabled:hover,
+button.cancel:disabled:hover,
+button.back:disabled:hover,
+button.send:disabled:active,
+button.notSend:disabled:active,
+button.cancel:disabled:active,
+button.back:disabled:active {
+    transform: none;
+}
+
+label.radioBlock {
+    display: block;
+}
+
+.gridjs-wrapper,
+.gridjs-footer {
+    border-radius: 0 0 0 0;
+}
+
+.gridjs-wrapper:nth-last-of-type(2) {
+    border-radius: 0 0 0 0;
+}
+
+
+ul {
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+.errorMessage {
+    color: red;
+}
+
+table {
+    border-collapse: collapse;
+    display: table;
+    margin: 0;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0;
+    table-layout: fixed;
+    text-align: left;
+    width: 100%;
+}
+
+tbody {
+    background-color: #fff;
+}
+
+th {
+    background-color: royalblue;
+    color: white;
+    text-align: center;
+    border: 1px solid rgb(204, 204, 204);
+    min-width: 94px;
+    width: 264px;
+    outline: none;
+    padding: 14px 24px;
+    position: relative;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+td {
+    border: 1px solid rgb(204, 204, 204);
+}
+
+footer {
+    height: 80px;
+}
