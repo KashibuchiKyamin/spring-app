@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### ローカル開発環境Docker向け環境変数 ###
+local-env/.env
