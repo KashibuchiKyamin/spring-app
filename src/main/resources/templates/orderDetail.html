@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/src/main/resources/static/css/common.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/orderDetail.css">
-    <script type="module" src="/src/main/resources/static/js/orderDetail.js"></script>
+    <link rel="stylesheet" href="/src/main/resources/static/css/common.css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" href="/src/main/resources/static/css/orderDetail.css" th:href="@{/css/orderDetail.css}">
+    <script type="module" src="/src/main/resources/static/js/orderDetail.js" th:src="@{/js/orderDetail.js}"></script>
     <title>案件詳細</title>
 </head>
 
