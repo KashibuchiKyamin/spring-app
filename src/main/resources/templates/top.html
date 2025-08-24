@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="https://unpkg.com/gridjs/dist/gridjs.umd.js" th:src="@{https://unpkg.com/gridjs/dist/gridjs.umd.js}"></script>
-    <script>
-        var tableData = /*[@{/top/orderDetail}]*/ "/src/main/resources/ajaxResponse/top.json";
+    <script th:inline="javascript">
+        var tableData = /*[[@{/top/orderList}]]*/ "/src/main/resources/ajaxResponse/top.json";
     </script>
+    <script type="module" src="https://unpkg.com/gridjs/dist/gridjs.umd.js" th:src="@{https://unpkg.com/gridjs/dist/gridjs.umd.js}"></script>
     <script type="module" src="/src/main/resources/static/js/top.js" th:src="@{/js/top.js}"></script>
 
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" th:href="@{https://unpkg.com/gridjs/dist/theme/mermaid.min.css}" />
