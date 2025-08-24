@@ -3,6 +3,8 @@ package com.kashibuchikyamin.spring_app.presentation.controller.top;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +15,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * トップページ表示および注文リストのAjaxリクエストを処理するコントローラーです。
+ * トップページ表示および案件一覧のAjaxリクエストを処理するコントローラーです。
+ * <p>
+ * 案件一覧取得API（/top/orderList）は、resources/ajaxResponse/top.jsonの内容をOrderListResponseとして返却します。
+ * </p>
  */
 @Controller
 @RequestMapping("/top")
 public class TopPageController {
+	/** JacksonのObjectMapper。JSON変換に利用 */
+	private final ObjectMapper objectMapper;
+
+	/**
+	 * コンストラクタ。ObjectMapperはDIされます。
+	 * @param objectMapper JacksonのObjectMapper
+	 */
+	public TopPageController(ObjectMapper objectMapper) {
+		this.objectMapper = objectMapper;
+	}
+
 	/**
 	 * トップページ（top.html）を表示します。
 	 * @param model モデル
@@ -31,15 +47,18 @@ public class TopPageController {
 
 	/**
 	 * 画面項目「案件一覧」のAjaxリクエストを処理します。
-	 * top.jsonの内容をJSONとして返却します。
-	 * @return 注文リストデータ(JSON)
+	 * <p>
+	 * resources/ajaxResponse/top.jsonを読み込み、OrderListResponseとして返却します。
+	 * </p>
+	 * @return 案件一覧データ（JSON）
+	 * @throws IOException ファイル読み込み・JSON変換失敗時
 	 */
 	@GetMapping(value = "/orderList", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> getOrderList() throws IOException {
-		// resources/ajaxResponse/top.json を読み込んで返却
+	public ResponseEntity<OrderListResponse> getOrderList() throws IOException {
 		ClassPathResource resource = new ClassPathResource("ajaxResponse/top.json");
 		String json = Files.readString(resource.getFile().toPath());
-		return ResponseEntity.ok(json);
+		OrderListResponse response = objectMapper.readValue(json, OrderListResponse.class);
+		return ResponseEntity.ok(response);
 	}
 }
