@@ -1,5 +1,5 @@
 -- 案件（注文）テーブル定義
-DROP TABLE IF EXISTS orders;s
+DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
   order_id VARCHAR(32) PRIMARY KEY COMMENT '案件ID',
   title VARCHAR(255) NOT NULL COMMENT '案件タイトル',
