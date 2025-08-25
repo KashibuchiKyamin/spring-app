@@ -1,6 +1,6 @@
 package com.kashibuchikyamin.spring_app.domain.repository.top;
 
-import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse;
+import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData;
 
 public interface TopPageRepository {
 
@@ -8,6 +8,6 @@ public interface TopPageRepository {
 	* 案件一覧を取得します。
 	* @return 案件一覧
 	*/
-	OrderListResponse getOrderList();
+	OrderListData getOrderList();
 
 }

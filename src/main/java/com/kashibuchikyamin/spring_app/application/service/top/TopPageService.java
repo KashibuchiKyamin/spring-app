@@ -2,8 +2,8 @@ package com.kashibuchikyamin.spring_app.application.service.top;
 
 import org.springframework.stereotype.Service;
 
+import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData;
 import com.kashibuchikyamin.spring_app.domain.repository.top.TopPageRepository;
-import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse;
 
 @Service
 public class TopPageService {
@@ -19,7 +19,7 @@ public class TopPageService {
 	 * 案件一覧を取得します。
 	 * @return 案件一覧
 	 */
-	public OrderListResponse getOrderList() {
+	public OrderListData getOrderList() {
 		return topPageRepository.getOrderList();
 	}
 }

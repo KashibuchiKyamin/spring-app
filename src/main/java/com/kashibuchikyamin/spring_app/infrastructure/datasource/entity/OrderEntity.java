@@ -2,7 +2,8 @@ package com.kashibuchikyamin.spring_app.infrastructure.datasource.entity;
 
 import java.util.List;
 
-import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse.OrderSummary;
+import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData.OrderSummary;
+
 
 /**
  * 案件（注文）テーブルのエンティティ。
