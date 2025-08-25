@@ -22,5 +22,5 @@
     </root>
 
     <!-- パッケージごとのログレベル設定例 -->
-    <logger name="com.kashibuchikyamin" level="DEBUG" />
+    <logger name="com.kashibuchikyamin" level="INFO" />
 </configuration>
