@@ -54,7 +54,7 @@ const tableOfServerSide = new gridjs.Grid({
 		}
 	},
 	pagination: {
-		limit: 5,
+		limit: 10,
 		server: {
 			url: () => tableData,
 			body: (prev, page, limit) => {

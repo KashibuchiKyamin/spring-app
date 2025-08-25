@@ -1,11 +1,7 @@
 package com.kashibuchikyamin.spring_app.presentation.controller.top;
 
 import java.io.IOException;
-import java.nio.file.Files;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.kashibuchikyamin.spring_app.application.service.top.TopPageService;
+import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse;
 
 /**
  * トップページ表示および案件一覧のAjaxリクエストを処理するコントローラーです。
@@ -24,14 +23,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/top")
 public class TopPageController {
 	/** JacksonのObjectMapper。JSON変換に利用 */
-	private final ObjectMapper objectMapper;
+	private final TopPageService topPageService;
 
 	/**
-	 * コンストラクタ。ObjectMapperはDIされます。
-	 * @param objectMapper JacksonのObjectMapper
+	 * コンストラクタ。
+	 * @param topPageService トップページサービス
 	 */
-	public TopPageController(ObjectMapper objectMapper) {
-		this.objectMapper = objectMapper;
+	public TopPageController(TopPageService topPageService) {
+		this.topPageService = topPageService;
 	}
 
 	/**
@@ -56,9 +55,9 @@ public class TopPageController {
 	@GetMapping(value = "/orderList", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<OrderListResponse> getOrderList() throws IOException {
-		ClassPathResource resource = new ClassPathResource("ajaxResponse/top.json");
-		String json = Files.readString(resource.getFile().toPath());
-		OrderListResponse response = objectMapper.readValue(json, OrderListResponse.class);
-		return ResponseEntity.ok(response);
+
+		OrderListResponse orderListResponse = topPageService.getOrderList();
+
+		return ResponseEntity.ok(orderListResponse);
 	}
 }

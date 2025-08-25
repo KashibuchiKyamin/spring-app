@@ -1,5 +1,9 @@
 package com.kashibuchikyamin.spring_app.infrastructure.datasource.entity;
 
+import java.util.List;
+
+import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse.OrderSummary;
+
 /**
  * 案件（注文）テーブルのエンティティ。
  * MyBatisのマッピング用レコード。
@@ -11,10 +15,26 @@ package com.kashibuchikyamin.spring_app.infrastructure.datasource.entity;
  * @param updatedAt 更新日時
  */
 public record OrderEntity(
-    String orderId,
-    String title,
-    String customer,
-    String salesRepId,
-    java.time.LocalDateTime createdAt,
-    java.time.LocalDateTime updatedAt
-) {}
+		String orderId,
+		String title,
+		String customer,
+		String salesRepId,
+		java.time.LocalDateTime createdAt,
+		java.time.LocalDateTime updatedAt) {
+
+	/**
+	 * OrderEntityのリストをOrderSummaryのリストに変換します。
+	 * @param records 変換元のOrderEntityリスト
+	 * @return 変換後のOrderSummaryリスト
+	 */
+	public static List<OrderSummary> toOrderSummaryList(List<OrderEntity> records) {
+		if (records == null) {
+			return List.of();
+		}
+		// OrderEntityのリストをOrderSummaryのリストに変換
+		List<OrderSummary> list = records.stream()
+				.map(e -> new OrderSummary(e.title(), e.customer(), e.orderId()))
+				.toList();
+		return list;
+	}
+}
