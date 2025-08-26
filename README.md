@@ -31,13 +31,13 @@ Spring Bootを用いたWebアプリケーションです。DDD（ドメイン駆
 
 ## 起動方法
 
-1. `./local-env/.env` にMySQLのパスワードとROOTのパスワードを空欄で記述しているので、編集する。
+1. `.\local-env\.env` にMySQLのパスワードとROOTのパスワードを空欄で記述しているので、編集する。
     - ROOTユーザのパスワードはDocker用。任意の値でOK。
     - 一般ユーザのパスワードは `.\src\main\resources\application.yaml` の値を転記する。
     - `.env`はコミットしないよう `$ git update-index --assume-unchanged .\local-env\.env` で除外
     - `.env`に設定すべき値が増えたら`$ git update-index --no-assume-unchanged .\local-env\.env` で戻す
 2. WSLのUbuntu上でDockerを起動し、MySQL環境を構築する。
-3. `./gradlew bootRun` でアプリケーションを起動する。
+3. `.\gradlew.bat bootRun` でアプリケーションを起動する。
 
 ## テスト・設計チェック
 
