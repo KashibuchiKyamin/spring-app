@@ -4,10 +4,8 @@ import java.util.List;
 
 import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData.OrderSummary;
 
-
 /**
- * 案件（注文）テーブルのエンティティ。
- * MyBatisのマッピング用レコード。
+ * 案件（注文）テーブルのエンティティ用レコード
  * @param orderId 案件ID
  * @param title 案件タイトル
  * @param customer 顧客名

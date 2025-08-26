@@ -5,7 +5,7 @@ import java.util.List;
 import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData;
 
 /**
- * トップページ「案件一覧」Ajaxレスポンスを表すレコードです。
+ * トップページ「案件一覧」Ajaxレスポンス用レコード
  * @param total 案件の合計件数
  * @param data 案件概要リスト
  */
@@ -14,7 +14,7 @@ public record OrderListResponse(
 		List<OrderListData.OrderSummary> data) {
 
 	/**
-	 * ドメインモデルの OrderListData からレスポンス用の OrderListResponse を生成します。
+	 * ドメインモデルの OrderListData からレスポンス用の OrderListResponse を生成
 	 * @param orderListData ドメインモデルの案件一覧データ
 	 * @return レスポンス用の案件一覧データ
 	 */
