@@ -10,6 +10,7 @@ Spring Bootを用いたWebアプリケーションです。DDD（ドメイン駆
 - Java 21
 - Gradle（ラッパー同梱）
 - Docker（MySQL用、WSLのUbuntu上で動作推奨）
+- 開発環境PCはWindows
 
 ## やりたいこと
 
@@ -32,23 +33,25 @@ Spring Bootを用いたWebアプリケーションです。DDD（ドメイン駆
 
 1. `./local-env/.env` にMySQLのパスワードとROOTのパスワードを空欄で記述しているので、編集する。
     - ROOTユーザのパスワードはDocker用。任意の値でOK。
-    - 一般ユーザのパスワードは `./src/main/resources/application.yaml` の値を転記する。
+    - 一般ユーザのパスワードは `.\src\main\resources\application.yaml` の値を転記する。
     - `.env`はコミットしないよう `$ git update-index --assume-unchanged .\local-env\.env` で除外
     - `.env`に設定すべき値が増えたら`$ git update-index --no-assume-unchanged .\local-env\.env` で戻す
-2. WSLのUbuntu上でDockerを起動し、MySQL環境を構築
-3. `./gradlew bootRun` でアプリケーション起動
+2. WSLのUbuntu上でDockerを起動し、MySQL環境を構築する。
+3. `./gradlew bootRun` でアプリケーションを起動する。
 
 ## テスト・設計チェック
 
 - `.\gradlew.bat test` でユニットテスト・アーキテクチャルール（ArchUnit）を実行
-- `	.\gradlew.bat clean build jig` JIGによる依存関係を出力
-  - JIGによる依存関係図は `build/jig/` 配下に出力
+- `.\gradlew.bat clean build jig` JIGによる依存関係を出力
+  - JIGによる依存関係図は `build\jig\` 配下に出力
 
 ## 思想・設計方針
 
 - DDDに基づくパッケージ分割
 - 単方向依存をJIG・ArchUnitで可視化・検証
-- ロギングはビジネスロジックに含めず、外部APIのリクエスト/レスポンスはライブラリ利用
+- Lombok不使用
+- ロギングはビジネスロジックに含めない
+- 外部APIのリクエスト/レスポンスのログはライブラリ利用
 - htmxはHTMLへの細かいデータ設定用途、Ajaxはページネーションのあるテーブル表示用途
 - MapperのテストはTestcontainer利用を検討したが、DockerはWSL上で使用し、アプリはWindows OS上で使用するため見送り
 
