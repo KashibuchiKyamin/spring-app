@@ -4,14 +4,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
- * サーブレットコンテナ上でSpring Bootアプリケーションを初期化・構成するクラスです。
- * 主にWARデプロイ時に使用されます。
+ * サーブレットコンテナ上でSpring Bootアプリケーションを初期化・構成するクラス
+ * 主にWARデプロイ時に使用
  */
 public class ServletInitializer extends SpringBootServletInitializer {
 
 	/**
-	 * Spring Bootアプリケーションの設定を行います。
-	 *
+	 * Spring Bootアプリケーションの設定を行う
 	 * @param application SpringApplicationBuilderインスタンス
 	 * @return 設定済みのSpringApplicationBuilderインスタンス
 	 */
@@ -19,5 +18,4 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(SpringAppApplication.class);
 	}
-
 }

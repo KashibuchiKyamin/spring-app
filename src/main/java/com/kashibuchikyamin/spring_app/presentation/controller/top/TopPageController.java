@@ -14,10 +14,8 @@ import com.kashibuchikyamin.spring_app.application.service.top.TopPageService;
 import com.kashibuchikyamin.spring_app.presentation.controller.top.response.OrderListResponse;
 
 /**
- * トップページ表示および案件一覧のAjaxリクエストを処理するコントローラーです。
- * <p>
- * 案件一覧取得API（/top/orderList）は、resources/ajaxResponse/top.jsonの内容をOrderListResponseとして返却します。
- * </p>
+ * トップページ表示および案件一覧のAjaxリクエストを処理するコントローラー
+ * 案件一覧取得API（/top/orderList）は、resources/ajaxResponse/top.jsonの内容をOrderListResponseとして返却
  */
 @Controller
 @RequestMapping("/top")

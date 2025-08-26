@@ -11,12 +11,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * presentation.controllerパッケージ配下のControllerのみ開始・終了ログを出力するAdvice。
- * <p>
- * basePackages属性で対象パッケージを指定。
- * 各コントローラメソッドの実行前（preHandle）と実行後（postHandle）で、
- * コントローラ名とメソッド名をINFOレベルでログ出力します。
- * </p>
+ * presentation.controllerパッケージ配下のControllerのみに開始・終了ログを出力するAdvice
+ * basePackages属性で対象パッケージを指定
+ * 各コントローラメソッドの実行前（preHandle）と実行後（postHandle）で、コントローラ名とメソッド名をINFOレベルでログ出力
  */
 @ControllerAdvice(basePackages = "com.kashibuchikyamin.spring_app.presentation.controller")
 public class ControllerLoggingAdvice implements HandlerInterceptor {

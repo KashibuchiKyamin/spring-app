@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * Ajaxリクエスト時の例外発生時に、統一されたエラーレスポンスを返却するAdvice。
- * <p>
- * presentation.controllerパッケージ配下のRestController/Controllerが対象です。
- * </p>
+ * Ajaxリクエスト時の例外発生時に統一されたエラーレスポンスを返すAdvice
+ * presentation.controllerパッケージ配下のRestController/Controllerが対象
  */
 @RestControllerAdvice(basePackages = "com.kashibuchikyamin.spring_app.presentation.controller")
 public class GlobalAjaxExceptionHandler {

@@ -6,10 +6,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * ControllerLoggingAdviceをInterceptorとして登録するSpring MVC設定クラス。
- * <p>
- * この設定により、全てのコントローラ実行時に開始・終了ログが出力されます。
- * </p>
+ * ControllerLoggingAdviceをInterceptorとして登録するSpring MVC設定クラス
+ * この設定により、全てのコントローラー実行時に開始・終了ログが出力される
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
