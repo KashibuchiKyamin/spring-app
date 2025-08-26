@@ -1,31 +1,66 @@
 # spring-app
 
+## 概要
+
+Spring Bootを用いたWebアプリケーションです。DDD（ドメイン駆動設計）を意識したパッケージ構成と、単方向依存の設計を目指しています。
+印刷物の案件情報の閲覧アプリの体裁で作っています。
+
+## 前提条件
+
+- Java 21
+- Gradle（ラッパー同梱）
+- Docker（MySQL用、WSLのUbuntu上で動作推奨）
+
 ## やりたいこと
 
-- 普通のSpringBootのWEBアプリケーションとして作る
-- システム的には、アプリ用のデータベースを使用し、他システムのAPIを呼び出して処理を行うものとする。
-- ログインは後回しにする。
-- 一覧画面と詳細画面を作る。
-- 詳細画面の情報は他システムよりAPIで取得するものとする。
-- htmxと、通常のAjaxの使い分けをする。
-- ロギングをビジネスロジックに含めない。
-- 基本的に全ソースに対してユニットテストを記述する。
+- 通常のSpring Boot Webアプリケーションとして開発
+- アプリ用データベースを利用し、他システムのAPIを呼び出して処理
+- ログイン機能は後回し
+- 一覧画面・詳細画面の作成
+- 詳細画面の情報は他システムAPIから取得
+- htmxと通常のAjaxの使い分け
+- ロギングはビジネスロジックに含めない
+- 全ソースに対してユニットテストを記述
+
+## パッケージ構成
+
+- `domain`：ビジネスロジック、エンティティ、値オブジェクト
+- `infrastructure`：DBアクセス、外部API連携
+- `presentation`：コントローラ、画面表示
 
 ## 起動方法
 
-- `./local-env/.env`にMySQLのパスワードとROOTのパスワードを空欄で記述している。  
-  - ROOTユーザのパスワードはDockerで使うだけなので、任意の値を記載。
-  - 一般ユーザのパスワードは`./src/main/resources/application.yaml`に記載のパスワードを転記。
-  - このファイルはコミットしないよう無視するように設定しておく。
+1. `./local-env/.env` にMySQLのパスワードとROOTのパスワードを空欄で記述しているので、編集する。
+    - ROOTユーザのパスワードはDocker用。任意の値でOK。
+    - 一般ユーザのパスワードは `./src/main/resources/application.yaml` の値を転記する。
+    - `.env`はコミットしないよう `$ git update-index --assume-unchanged .\local-env\.env` で除外
+    - `.env`に設定すべき値が増えたら`$ git update-index --no-assume-unchanged .\local-env\.env` で戻す
+2. WSLのUbuntu上でDockerを起動し、MySQL環境を構築
+3. `./gradlew bootRun` でアプリケーション起動
 
-## 思想
+## テスト・設計チェック
 
-- DDDでやりたいのでパッケージ構成をDDDらしくする。
-- 単方向の依存を実現するために、JIGで作図しながら内容を把握する。
-  - この辺、テスト(ArchUnit)でチェックもできるといいな。
-- ロギングはビジネスロジックに含めない。
-  - 外部APIのリクエストとレスポンスはライブラリを使いたいな。
-- htmxはAjaxで細かいデータをHTMLに設定する場合に使用する。
-- 普通のJSONをやり取りするAjaxはテーブル表示向けに使用する。
-- MapperのテストについてはTestcontainerでやりたかったけど、開発環境に直接Dockerを入れる構成にしなかったので、断念。  
-  WSLのUbuntuにDockerを入れて、これに作ったMySQL環境に接続をして試験できるようにする。
+- `.\gradlew.bat test` でユニットテスト・アーキテクチャルール（ArchUnit）を実行
+- `	.\gradlew.bat clean build jig` JIGによる依存関係を出力
+  - JIGによる依存関係図は `build/jig/` 配下に出力
+
+## 思想・設計方針
+
+- DDDに基づくパッケージ分割
+- 単方向依存をJIG・ArchUnitで可視化・検証
+- ロギングはビジネスロジックに含めず、外部APIのリクエスト/レスポンスはライブラリ利用
+- htmxはHTMLへの細かいデータ設定用途、Ajaxはページネーションのあるテーブル表示用途
+- MapperのテストはTestcontainer利用を検討したが、DockerはWSL上で使用し、アプリはWindows OS上で使用するため見送り
+
+## 技術スタック
+
+- Spring Boot
+- MySQL（Docker）
+- htmx
+- ArchUnit（設計チェック）
+- JIG（依存関係可視化）
+- JUnit（テスト）
+
+## その他
+
+- 対象読者：チーム開発者向け
