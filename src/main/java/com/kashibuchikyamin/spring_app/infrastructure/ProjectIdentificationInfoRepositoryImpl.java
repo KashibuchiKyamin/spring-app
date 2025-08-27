@@ -9,6 +9,9 @@ import com.kashibuchikyamin.spring_app.domain.repository.ProjectIdentificationIn
 import com.kashibuchikyamin.spring_app.infrastructure.datasource.entity.single.OrderEntity;
 import com.kashibuchikyamin.spring_app.infrastructure.datasource.mapper.single.OrderMapper;
 
+/**
+ * 案件識別情報リポジトリ実装
+ */
 @Repository
 public class ProjectIdentificationInfoRepositoryImpl implements ProjectIdentificationInfoRepository {
 
