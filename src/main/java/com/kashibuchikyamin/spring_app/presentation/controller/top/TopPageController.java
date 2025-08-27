@@ -54,7 +54,7 @@ public class TopPageController {
 	@ResponseBody
 	public ResponseEntity<OrderListResponse> getOrderList() throws IOException {
 
-		OrderListResponse orderListResponse = OrderListResponse.from(topPageService.getOrderList());
+		OrderListResponse orderListResponse = new OrderListResponse(topPageService.getOrderList());
 
 		return ResponseEntity.ok(orderListResponse);
 	}

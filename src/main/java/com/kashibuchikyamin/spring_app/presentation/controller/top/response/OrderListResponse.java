@@ -2,7 +2,7 @@ package com.kashibuchikyamin.spring_app.presentation.controller.top.response;
 
 import java.util.List;
 
-import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData;
+import com.kashibuchikyamin.spring_app.application.service.top.dto.OrderListDto;
 
 /**
  * トップページ「案件一覧」Ajaxレスポンス用レコード
@@ -11,14 +11,13 @@ import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData;
  */
 public record OrderListResponse(
 		int total,
-		List<OrderListData.OrderSummary> data) {
+		List<OrderListDto.OrderSummary> data) {
 
 	/**
-	 * ドメインモデルの OrderListData からレスポンス用の OrderListResponse を生成
-	 * @param orderListData ドメインモデルの案件一覧データ
-	 * @return レスポンス用の案件一覧データ
+	 * コンストラクタ.
+	 * @param dto サービス層の DTO
 	 */
-	public static OrderListResponse from(OrderListData orderListData) {
-		return new OrderListResponse(orderListData.total(), orderListData.data());
+	public OrderListResponse(OrderListDto dto) {
+		this(dto.total(), dto.data());
 	}
 }
