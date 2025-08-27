@@ -1,4 +1,4 @@
-package com.kashibuchikyamin.spring_app.infrastructure.datasource.mapper;
+package com.kashibuchikyamin.spring_app.infrastructure.datasource.mapper.single;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.kashibuchikyamin.spring_app.infrastructure.datasource.entity.OrderEntity;
+import com.kashibuchikyamin.spring_app.infrastructure.datasource.entity.single.OrderEntity;
 
 /**
  * 案件（注文）テーブル用のMyBatis Mapperインタフェース。

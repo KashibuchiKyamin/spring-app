@@ -1,18 +1,18 @@
-package com.kashibuchikyamin.spring_app.domain.model.top;
+package com.kashibuchikyamin.spring_app.domain.model;
 
 import java.util.List;
 
 /**
- * 案件一覧用データを保持するレコード
+ * 案件識別情報データを保持するレコード
  * @param total 案件の合計件数
- * @param data 案件概要リスト
+ * @param data 案件識別情報リスト
  */
-public record OrderListData(
+public record ProjectIdentificationInfo(
 		int total,
-		List<OrderListData.OrderSummary> data) {
+		List<ProjectIdentificationInfo.OrderSummary> data) {
 
 	/**
-	 * 案件概要を表すレコード
+	 * 案件識別情報を表すレコード
 	 * <p>
 	 * top.json の data 配列の各要素に対応
 	 * </p>

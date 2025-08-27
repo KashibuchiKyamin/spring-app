@@ -2,7 +2,7 @@ package com.kashibuchikyamin.spring_app.application.service.top.dto;
 
 import java.util.List;
 
-import com.kashibuchikyamin.spring_app.domain.model.top.OrderListData;
+import com.kashibuchikyamin.spring_app.domain.model.ProjectIdentificationInfo;
 
 /**
  * トップページ「案件一覧」Ajaxレスポンス用レコード
@@ -33,7 +33,7 @@ public record OrderListDto(
 	 * ドメインモデルの OrderListData からインスタンスを生成
 	 * @param data
 	 */
-	public OrderListDto(OrderListData data) {
+	public OrderListDto(ProjectIdentificationInfo data) {
 		this(data.total(), data.data().stream()
 				.map(d -> new OrderSummary(d.title(), d.customer(), d.orderId()))
 				.toList());
