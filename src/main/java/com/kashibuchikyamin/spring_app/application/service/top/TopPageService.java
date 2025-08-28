@@ -3,26 +3,25 @@ package com.kashibuchikyamin.spring_app.application.service.top;
 import org.springframework.stereotype.Service;
 
 import com.kashibuchikyamin.spring_app.application.service.top.dto.OrderListDto;
-import com.kashibuchikyamin.spring_app.domain.model.ProjectIdentificationInfo;
-import com.kashibuchikyamin.spring_app.domain.repository.ProjectIdentificationInfoRepository;
+import com.kashibuchikyamin.spring_app.domain.model.OrderIdentificationInfo;
+import com.kashibuchikyamin.spring_app.domain.repository.OrderIdentificationInfoRepository;
 
 @Service
 public class TopPageService {
 
-	/** トップページリポジトリ */
-	private final ProjectIdentificationInfoRepository projectIdentificationInfoRepository;
+	/** 注文識別情報リポジトリ */
+	private final OrderIdentificationInfoRepository orderIdentificationInfoRepository;
 
-	public TopPageService(ProjectIdentificationInfoRepository projectIdentificationInfoRepository) {
-		this.projectIdentificationInfoRepository = projectIdentificationInfoRepository;
+	public TopPageService(OrderIdentificationInfoRepository orderIdentificationInfoRepository) {
+		this.orderIdentificationInfoRepository = orderIdentificationInfoRepository;
 	}
 
 	/**
-	 * 案件一覧を取得します。
-	 * @return 案件一覧
+	 * 注文一覧を取得します。
+	 * @return 注文一覧
 	 */
 	public OrderListDto getOrderList() {
-		ProjectIdentificationInfo orderList = projectIdentificationInfoRepository.getOrderList();
-
+		OrderIdentificationInfo orderList = orderIdentificationInfoRepository.getOrderList();
 		return new OrderListDto(orderList);
 	}
 }

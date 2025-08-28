@@ -1,8 +1,7 @@
 package com.kashibuchikyamin.spring_app.infrastructure.datasource.entity.single;
 
 import java.util.List;
-
-import com.kashibuchikyamin.spring_app.domain.model.ProjectIdentificationInfo.OrderSummary;
+import com.kashibuchikyamin.spring_app.domain.model.OrderIdentificationInfo.OrderSummary;
 
 /**
  * 案件（注文）テーブルのエンティティ用レコード
