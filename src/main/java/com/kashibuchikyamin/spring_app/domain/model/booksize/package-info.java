@@ -1,0 +1,1 @@
+package com.kashibuchikyamin.spring_app.domain.model.booksize;
