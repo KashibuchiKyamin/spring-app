@@ -24,6 +24,10 @@ public record FinishedSize(
 	public FinishedSize {
 		int sum = heightMm + widthMm;
 		int typeSum = type.side1Mm + type.side2Mm;
+		int shorterSide = Math.min(type.side1Mm, type.side2Mm);
+		int longerSide = Math.max(type.side1Mm, type.side2Mm);
+		int inputShorterSide = Math.min(heightMm, widthMm);
+		int inputLongerSide = Math.max(heightMm, widthMm);
 
 		if (sum > typeSum) {
 			throw new IllegalArgumentException(
@@ -31,14 +35,10 @@ public record FinishedSize(
 						sum, type.side1Mm, type.side2Mm, typeSum));
 		}
 
-		if (heightMm > type.side1Mm || heightMm > type.side2Mm) {
+		if (inputShorterSide > shorterSide || inputLongerSide > longerSide) {
 			throw new IllegalArgumentException(
-					String.format("縦寸法が判型(%s)の最大値を超えています: 入力=%d, 判型=%d", type.name(), heightMm, type.side1Mm));
-		}
-
-		if (widthMm > type.side1Mm || widthMm > type.side2Mm) {
-			throw new IllegalArgumentException(
-					String.format("横寸法が判型(%s)の最大値を超えています: 入力=%d, 判型=%d", type.name(), widthMm, type.side2Mm));
+					String.format("指定寸法が判型(%s)内に収まりません: 入力=%d×%d, 判型=%d×%d", type.name(), heightMm, widthMm,
+						type.side1Mm, type.side2Mm));
 		}
 	}
 }

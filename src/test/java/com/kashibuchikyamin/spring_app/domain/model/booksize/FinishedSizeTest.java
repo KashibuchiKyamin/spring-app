@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+@DisplayName("FinishedSize")
 class FinishedSizeTest {
 	/**
 	 * 判型の縦横ちょうどの組み合わせ（正常系）を返す。
@@ -19,7 +22,9 @@ class FinishedSizeTest {
 		return Stream.of(FinishedSizeType.values())
 				.flatMap(type -> Stream.of(
 						org.junit.jupiter.params.provider.Arguments.of(type, type.side1Mm, type.side2Mm),
-						org.junit.jupiter.params.provider.Arguments.of(type, type.side2Mm, type.side1Mm)));
+						org.junit.jupiter.params.provider.Arguments.of(type, type.side2Mm, type.side1Mm),
+						org.junit.jupiter.params.provider.Arguments.of(type, type.side1Mm - 1, type.side2Mm),
+						org.junit.jupiter.params.provider.Arguments.of(type, type.side1Mm, type.side2Mm - 1)));
 	}
 
 	/**
@@ -46,25 +51,32 @@ class FinishedSizeTest {
 	static Stream<org.junit.jupiter.params.provider.Arguments> oneSideOverCases() {
 		return Stream.of(FinishedSizeType.values())
 				.flatMap(type -> Stream.of(
-						org.junit.jupiter.params.provider.Arguments.of(type, type.side1Mm + 1, type.side2Mm - 1),
-						org.junit.jupiter.params.provider.Arguments.of(type, type.side1Mm - 1, type.side2Mm + 1)));
+						org.junit.jupiter.params.provider.Arguments.of(type, type.side1Mm + 1, type.side2Mm - 2),
+						org.junit.jupiter.params.provider.Arguments.of(type, type.side1Mm - 2, type.side2Mm + 1)));
 	}
 
-	@ParameterizedTest
-	@MethodSource("validCases")
-	void 判型ちょうどで縦横網羅のパターン(FinishedSizeType type, int height, int width) {
-		assertDoesNotThrow(() -> new FinishedSize(type, height, width));
-	}
+	@Nested
+	@DisplayName("生成時バリデーション")
+	class ConstructorValidation {
+		@ParameterizedTest(name = "{0} の {1}x{2} は生成できる")
+		@MethodSource("com.kashibuchikyamin.spring_app.domain.model.booksize.FinishedSizeTest#validCases")
+		@DisplayName("判型内に収まる場合は生成できる")
+		void createsWhenItFitsInBaseSize(FinishedSizeType type, int height, int width) {
+			assertDoesNotThrow(() -> new FinishedSize(type, height, width));
+		}
 
-	@ParameterizedTest
-	@MethodSource("sumOverCases")
-	void 縦横合計を超えるパターン(FinishedSizeType type, int height, int width) {
-		assertThrows(IllegalArgumentException.class, () -> new FinishedSize(type, height, width));
-	}
+		@ParameterizedTest(name = "{0} の {1}x{2} は合計超過で失敗する")
+		@MethodSource("com.kashibuchikyamin.spring_app.domain.model.booksize.FinishedSizeTest#sumOverCases")
+		@DisplayName("縦横合計が判型合計を超える場合は失敗する")
+		void throwsWhenSumExceedsBaseSize(FinishedSizeType type, int height, int width) {
+			assertThrows(IllegalArgumentException.class, () -> new FinishedSize(type, height, width));
+		}
 
-	@ParameterizedTest
-	@MethodSource("oneSideOverCases")
-	void 合計内だが1辺が超えるパターン(FinishedSizeType type, int height, int width) {
-		assertThrows(IllegalArgumentException.class, () -> new FinishedSize(type, height, width));
+		@ParameterizedTest(name = "{0} の {1}x{2} は辺長超過で失敗する")
+		@MethodSource("com.kashibuchikyamin.spring_app.domain.model.booksize.FinishedSizeTest#oneSideOverCases")
+		@DisplayName("合計内でも一辺が判型を超える場合は失敗する")
+		void throwsWhenEitherSideExceedsBaseSize(FinishedSizeType type, int height, int width) {
+			assertThrows(IllegalArgumentException.class, () -> new FinishedSize(type, height, width));
+		}
 	}
 }
